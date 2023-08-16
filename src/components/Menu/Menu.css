@@ -1,0 +1,107 @@
+.menu__page-overlay {
+    display: none;
+  }
+  
+  @media screen and (max-width: 1023px) {
+    .menu__page-overlay {
+      display: flex;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.3);
+      z-index: 5;
+      justify-content: space-between;
+    }
+  
+    .menu__menu {
+      box-sizing: border-box;
+      padding: 159px 90px 90px 90px;
+      width: 520px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #202020;
+      justify-content: space-between;
+      position: relative;
+      align-items: center;
+    }
+  
+    .menu__overlay-container {
+      flex: 1 1 auto;
+      
+    }
+  
+    .menu__close-button {
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      background-image: url("../../images/close-button.svg");
+      width: 22px;
+      height: 22px;
+      border: none;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: transparent;
+      cursor: pointer;
+    }
+  
+    .menu__close-button:hover {
+      opacity: .6;
+    }
+  
+    .menu__links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 22px;
+    }
+  
+    .menu__link {
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      color: #FFF;
+      width: max-content;
+      border-bottom: 2px solid transparent;
+    }
+  
+    .menu__link_active {
+      color: #2be080;
+    }
+  
+    .menu__link:hover {
+      border-bottom: 2px solid #FFF;
+    }
+  
+    .menu__account-button {
+      width: 100px;
+      height: 32px;
+      background: #202020;
+      box-shadow: 0px 3px 14px rgba(0, 0, 0, .08);
+      border-radius: 40px;
+      cursor: pointer;
+    }
+  
+    .menu__account-button:hover {
+      opacity: .6;
+    }
+  }
+  
+  @media screen and (max-width: 576px) {
+    .menu__menu {
+      padding: 144px 10px 46px 10px;
+      width: 100%;
+    }
+  
+    .menu__overlay-container {
+      display: none;
+    }
+  
+    .menu__links {
+      gap: 15px;
+    }
+  }
+  

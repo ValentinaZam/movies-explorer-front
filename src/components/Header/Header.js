@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
 import headerLogo from "../../images/logo/logo_header.svg";
-import icon_main_acc from "../../images/icon__COLOR_icon-main.svg";
+import icon_main_acc from "../../images/profile.svg";
 import icon_menu from "../../images/icon_menu_open.svg"
+import Menu from "../Menu/Menu";
 
 function Header() {
     const location = useLocation();
@@ -23,7 +24,7 @@ function Header() {
             <img src={headerLogo} alt="Логотип" />
         </Link>
         <div className="header__button-container">
-            <Link className="header__link header__button" to="/sign-up">
+            <Link className="header__link header__link_reg header__button" to="/sign-up">
                 Регистрация
             </Link>
 
@@ -37,17 +38,17 @@ function Header() {
         </Link>
         <div className="header__button-container-active">
             <NavLink className={location.pathname === "/movies" ? "header__button_active" : "header__link"} to="/movies">Фильмы</NavLink>
-            <NavLink className={location.pathname === "/saved-movies" ? "header__button_active" : "header__link"} to="/saved-movies">Сoхранённые фильмы</NavLink>
+            <NavLink className={location.pathname === "/saved-movies" ? "header__button_active" : "header__link"}
+                to="/saved-movies">Сoхранённые фильмы</NavLink>
         </div>
         <Link className="header__button-account header__button" to="/profile">
-            <p className="header__button-account_text" >Аккаунт
-            </p>
-            <img className="header__button-account_icon" src={icon_main_acc} alt="Логотип" />
+            <img className="header__account-image" src={icon_main_acc} alt="Кнопка аккаунт" />
         </Link>
         <button className="header__menu" onClick={handleOpenMenu}><img className="header__button" src={icon_menu} alt="Mеню" /></button>
-
+        {isClicked ? <Menu handleClose={handleCloseMenu} /> : ""}
     </header>)
     )
 }
+
 
 export default Header;
