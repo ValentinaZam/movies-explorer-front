@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
-import headerLogo from "../../images/logo/logo_header.svg";
+import headerLogo from "../../images/logo_header.svg";
 import icon_main_acc from "../../images/profile.svg";
 import icon_menu from "../../images/icon_menu_open.svg"
 import Menu from "../Menu/Menu";
@@ -24,7 +24,7 @@ function Header() {
             <img src={headerLogo} alt="Логотип" />
         </Link>
         <div className="header__button-container">
-            <Link className="header__link header__link_reg header__button" to="/sign-up">
+            <Link className="header__link-reg header__button" to="/sign-up">
                 Регистрация
             </Link>
 

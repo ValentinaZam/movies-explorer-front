@@ -1,0 +1,57 @@
+.body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #073042;
+  }
+  
+  .earth-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    animation: rotate 20s linear infinite;
+  }
+  
+  .earth {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .earth-background {
+    
+    fill: #073042;;
+  }
+  
+  .continents text {
+    font-family: Arial, sans-serif;
+    font-size: 6px;
+    fill: #fff;
+    transform-origin: center;
+    animation: rotateContinents 20s linear infinite;
+  }
+  
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes rotateContinents {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(90deg);
+    }
+    50% {
+      transform: rotate(180deg);
+    }
+    75% {
+      transform: rotate(270deg);
+    }
+  }
