@@ -16,7 +16,7 @@ function AboutMe() {
             который по заслугам оценит мои возможности, а я смогу воплощать свои идеи для развития его бизнеса.
           </p>
           <a
-            href="https://github.com/TatianaMil"
+            href="https://github.com/ValentinaZam"
             className="about-me__link"
             target="_blank"
             rel="noreferrer"

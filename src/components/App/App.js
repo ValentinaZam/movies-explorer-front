@@ -2,7 +2,7 @@ import React from "react"
 import { Routes, Route, useLocation } from "react-router-dom"
 import Header from "../Header/Header"
 import Main from "../Main/Main"
-// import Footer from "../Footer/Footer"
+import Footer from "../Footer/Footer"
 // import NotFound from "../NotFound/NotFound"
 // import Movies from "../Movies/Movies"
 // import SavedMovies from "../SavedMovies/SavedMovies"
@@ -14,7 +14,6 @@ import "./App.css"
 function App() {
     const location = useLocation()
 
-    // Временная функция для проверки, нужно ли отображать Header на текущей странице
     const shouldShowHeader = () => {
         const { pathname } = location
         return (
@@ -25,11 +24,11 @@ function App() {
         )
     }
 
-    // Временная функция для проверки, нужно ли отображать Footer на текущей странице
-    // const shouldShowFooter = () => {
-    //     const { pathname } = location
-    //     return pathname === "/"
-    // }
+
+    const shouldShowFooter = () => {
+        const { pathname } = location
+        return pathname === "/"
+    }
 
     return (
         <div className="body">
@@ -44,7 +43,7 @@ function App() {
                     <Route path="/signin" element={<Login />} />
                     <Route path="*" element={<NotFound />} /> */}
                 </Routes>
-                {/* {shouldShowFooter() && <Footer />} */}
+                {shouldShowFooter() && <Footer />}
             </div>
         </div>
     );
