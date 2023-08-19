@@ -16,7 +16,7 @@
   
     .menu__menu {
       box-sizing: border-box;
-      padding: 159px 90px 90px 90px;
+      padding: 159px 90px 20px 90px;
       width: 520px;
       min-height: 100vh;
       display: flex;
@@ -92,7 +92,7 @@
   
   @media screen and (max-width: 576px) {
     .menu__menu {
-      padding: 144px 10px 46px 10px;
+      padding: 144px 10px 208px 10px;
       width: 100%;
     }
   
@@ -101,7 +101,7 @@
     }
   
     .menu__links {
-      gap: 15px;
+      gap: 24px;
     }
   }
   

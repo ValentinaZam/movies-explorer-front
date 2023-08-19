@@ -48,7 +48,7 @@
 }
 
 .about-me__link {
-  margin: 78px 0 0;
+  margin: 98px 0 0;
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
@@ -59,7 +59,7 @@
 }
 
 .about-me__link:hover {
-  color: #3ddc84;
+  opacity: .7;
 }
 
 .about-me__photo {
@@ -114,7 +114,7 @@
   .about-me {
     padding: 70px 14px;
   }
-  
+
   .about-me__container {
     margin-top: 60px;
     flex-direction: column-reverse;

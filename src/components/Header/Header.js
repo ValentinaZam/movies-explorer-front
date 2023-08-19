@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import "./Header.css";
-import headerLogo from "../../images/logo_header.svg";
+import headerLogo from "../../images/logo.svg";
 import icon_main_acc from "../../images/profile-auth-header.svg";
 import icon_menu from "../../images/icon_menu_open.svg"
 import Menu from "../Menu/Menu";
@@ -10,7 +10,7 @@ import icon_header_acc from "../../images/profile.svg"
 function Header() {
     const location = useLocation();
     const [isClicked, setIsClicked] = useState(false)
-    const [isAuth, setIsAuth] = useState(true)
+    const [isAuth, setIsAuth] = useState(false)
 
     // Временные переменные и функции для разного отображения элементов в зависимости от авторизации и путей
     const headerFirst = () => {
@@ -44,11 +44,11 @@ function Header() {
             <img src={headerLogo} alt="Логотип" />
         </Link>
         <div className="header__button-container">
-            <Link className="header__link-reg header__button" to="/sign-up">
+            <Link className="header__link-reg header__button" to="/signup">
                 Регистрация
             </Link>
 
-            <Link className="header__button-container" to="/sign-in">
+            <Link className="header__button-container" to="/signin">
                 <button className="header__button-signin header__button">Войти</button>
             </Link>
         </div>

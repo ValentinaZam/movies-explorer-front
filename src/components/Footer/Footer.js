@@ -10,7 +10,7 @@ function Footer() {
       <div className="footer__container">
         <p className="footer__author">
           {" "}
-          © 2023 Валентина Замараева
+          © 2023
         </p>
         <a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">
           Яндекс.Практикум

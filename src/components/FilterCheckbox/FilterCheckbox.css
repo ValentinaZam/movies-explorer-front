@@ -7,7 +7,7 @@
   font-size: 13px;
   line-height: 18px;
   color: #ffffff;
-  margin-left: 14px;
+  margin: 0 14px;
 }
 
 .filter__checkbox {
@@ -32,9 +32,30 @@
   background-image: url("../../images/button-filter-active.svg");
 }
 
-@media screen and (max-width: 576px) {
-  .filter__title {
-    font-size: 11px;
-    line-height: 18px;
+@media screen and (max-width: 1023px) {
+  .filter {
+    flex-direction: row; 
+    justify-content: flex-end;
   }
+
+  .filter__checkbox {
+    order: 1; 
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .filter {
+    flex-direction: row; 
+    justify-content: center;
+  }
+  .filter__title {
+    font-weight: 400;
+    font-size: 11px;
+font-style: normal;
+font-weight: 400;
+line-height: 18px; 
+    color: #ffffff;
+    margin: 0 14px;
+  }
+ 
 }

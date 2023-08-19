@@ -5,10 +5,11 @@
 }
 
 .cards__list {
-  margin: 78px 70px 10px;
+  padding: 0;
+  margin: 118px 70px 30px;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px 20px;
  max-height: 1315px;
 
@@ -60,15 +61,15 @@
   }
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 576px) {
   .card {
     height: 237px;
   }
   .cards__list {
     max-height: 1307px;
-    margin: 50px auto 10px;
+    margin: 90px auto 10px;
     grid-template-columns: repeat(1, 300px);
-    column-gap: 20px;
+    gap: 23px 0;
   }
 
   .cards__button {

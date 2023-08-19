@@ -39,6 +39,7 @@
 }
 
 .about-project__text-block {
+  padding: 0;
   display: flex;
   margin-top: 70px;
   gap: 0 40px;

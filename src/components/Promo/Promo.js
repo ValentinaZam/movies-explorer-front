@@ -9,7 +9,7 @@ function Promo() {
       <div className="promo__container">
         <div className="promo__text">
           <h1 className="promo__title">
-            Учебный проект студента факультета Веб&nbsp;-&nbsp;разработки.
+            Учебный проект студента факультета <span style={{ whiteSpace: 'nowrap' }}>Веб-разработки</span>.
           </h1>
           <p className="promo__description">
             Листайте ниже, чтобы узнать больше про этот проект и его создателя.
@@ -19,7 +19,7 @@ function Promo() {
 
         <NavTab />
       </div>
-    </section>
+    </section >
   );
 }
 

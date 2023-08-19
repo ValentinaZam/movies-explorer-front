@@ -6,7 +6,7 @@
 }
 
 .not-found__title {
-  margin-top: 246px;
+  margin: 246px 0 0;
   font-size: 140px;
 font-style: normal;
 font-weight: 400;
@@ -24,7 +24,7 @@ line-height: normal;
 }
 
 .not-found__button {
-  margin-top: 184px;
+  margin-top: 168px;
   margin-bottom: 60px;
   text-decoration: none;
   font-size: 14px;
