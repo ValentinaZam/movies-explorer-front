@@ -1,0 +1,40 @@
+.filter {
+  display: flex;
+}
+
+.filter__title {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+  color: #ffffff;
+  margin-left: 14px;
+}
+
+.filter__checkbox {
+  width: 36px;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-image: url("../../images/button-filter.svg");
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  appearance: none;
+}
+
+.filter__checkbox::after {
+  position: absolute;
+  height: 16px;
+  width: 16px;
+}
+
+.filter__checkbox:checked {
+  background-image: url("../../images/button-filter-active.svg");
+}
+
+@media screen and (max-width: 576px) {
+  .filter__title {
+    font-size: 11px;
+    line-height: 18px;
+  }
+}
