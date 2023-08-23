@@ -48,7 +48,7 @@ line-height: normal;
 
 @media screen and (max-width: 1023px) {
   .search {
-    margin: 69px 30px 50px;
+    margin: 80px 30px 16px;
   }
 
   .search__form {

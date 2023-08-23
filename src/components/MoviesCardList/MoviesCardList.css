@@ -20,7 +20,7 @@
   flex-direction: column;
   align-items: center;
   margin-top: 51px;
-  margin-bottom: 80px;
+  margin-bottom: 100px;
 }
 
 .cards__button {
@@ -78,5 +78,8 @@
 
   .cards__button-container {
     margin: 70px 0 80px;
+  }
+  .cards__button-container {
+    margin-bottom: 95px;
   }
 }

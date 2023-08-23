@@ -148,5 +148,16 @@ line-height: 16px;
   .header {
     padding: 0 14px;
   }
+  .header__link-reg{
+    font-size: 10px;
+    line-height: 16px;
+    padding-right: 14px;
+  }
+  .header__button-signin{
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+line-height: 16px;
+  }
  
   }

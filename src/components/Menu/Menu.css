@@ -16,7 +16,7 @@
   
     .menu__menu {
       box-sizing: border-box;
-      padding: 159px 90px 20px 90px;
+      padding: 159px 90px 8px 90px;
       width: 520px;
       min-height: 100vh;
       display: flex;
@@ -34,8 +34,8 @@
   
     .menu__close-button {
       position: absolute;
-      top: 22px;
-      right: 22px;
+      top: 28px;
+      right: 28px;
       background-image: url("../../images/close-button.svg");
       width: 22px;
       height: 22px;
@@ -54,7 +54,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 22px;
+      gap: 26px;
     }
   
     .menu__link {
@@ -77,6 +77,7 @@
     }
   
     .menu__account-button {
+      padding-right: 30px;
       width: 100px;
       height: 32px;
       background: #202020;
@@ -102,6 +103,10 @@
   
     .menu__links {
       gap: 24px;
+    }
+    .menu__close-button{
+      top: 17px;
+      right: 19px;
     }
   }
   

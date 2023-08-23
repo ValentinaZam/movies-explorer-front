@@ -10,13 +10,8 @@ import icon_header_acc from "../../images/profile.svg"
 function Header({ isAuth }) {
     const location = useLocation();
     const [isClicked, setIsClicked] = useState(false)
-    // const [isAuth, setIsAuth] = useState(true)
 
     // Временные переменные и функции для разного отображения элементов в зависимости от авторизации и путей
-    const headerFirst = () => {
-        const { pathname } = location
-        return pathname === "/"
-    }
 
     const headerSecond = () => {
         const { pathname } = location
@@ -49,7 +44,8 @@ function Header({ isAuth }) {
             </Link>
 
             <Link className="header__link-signin" to="/signin">
-                <button className="header__button-signin header__button" type="button">Войти</button>
+                <button className="header__button-signin header__button"
+                    type="button">Войти</button>
             </Link>
         </div>
     </ header >)}

@@ -6,10 +6,10 @@ import Header from "../Header/Header";
 function Profile() {
 
   return (
-    <>
+    <div className="profile">
       <Header isAuth={true} />
       <main>
-        <section className="profile">
+        <section className="profile__container">
           <h1 className="profile__title">Привет, Валентина!</h1>
           <form id="form" className="profile__form" noValidate>
             <label className="profile__label">
@@ -51,7 +51,7 @@ function Profile() {
           </form>
         </section>
       </main>
-    </>
+    </div>
   );
 }
 
