@@ -70,4 +70,8 @@
     font-size: 18px;
     line-height: 28px;
   }
+  .portfolio__image{
+    width: 10px;
+    padding-right: 5px;
+  }
 }
