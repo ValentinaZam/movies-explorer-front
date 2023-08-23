@@ -20,7 +20,7 @@
 .card__container {
   display: flex;
   justify-content: space-between;
-  padding: 14px 12px;
+  padding: 10px 12px;
   border-bottom: 6px;
 }
 
@@ -65,7 +65,7 @@
   cursor: pointer;
 }
 
-.card__like-button_active {
+.card__like-button--active {
   background-image: url("../../images/like-active.svg");
   width: 16px;
  object-fit: cover;
@@ -74,6 +74,10 @@
   background-repeat: no-repeat;
   background-color: transparent;
   cursor: pointer;
+}
+
+.card__like-button--active:hover{
+  opacity: .7;
 }
 
 .card__delete-button:hover {

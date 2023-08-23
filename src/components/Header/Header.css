@@ -6,7 +6,6 @@
     display: flex;
     justify-content: space-between;
     background-color: #073042;
-    margin: 0 auto 0;
   }
   .header-main {
     max-width: 1280px;
@@ -15,7 +14,7 @@
     display: flex;
     justify-content: space-between;
     background-color: #202020;
-    margin: 0 auto 0;
+    margin: 0;
   }
 
   .header__logo {
@@ -26,10 +25,15 @@
     display: flex;
     text-decoration: none;
 }
-.header__button-container-active{
+.header__button-container--active{
     padding-left: 45px;
     display: flex;
     text-decoration: none;
+}
+
+.header__link-signin{
+  display: flex;
+  text-decoration: none;
 }
 
   .header__button-account {
@@ -50,9 +54,8 @@
     height: 60px;
   }
 
-.header__button_active {
+.header__button-active {
     display: inline-block;
-    
     margin: auto 0 auto 16px;
     text-decoration: none;
     color: white;
@@ -118,17 +121,14 @@ line-height: 16px;
     opacity: .8;
   }
 
-  
   @media screen and (max-width: 790px) {
     .header {
-      margin: 0 auto 0;
       padding: 0 30px;
     }
     .header-main {
-        margin: 0 auto 0;
         padding: 0 30px;
       }
-      .header__button-container-active  {
+      .header__button-container--active  {
         display: none;
       }
       .header__button-account {
@@ -140,11 +140,9 @@ line-height: 16px;
   }
   @media screen and (max-width: 570px) {
     .header-landing {
-      margin: 0 auto 0;
       padding: 0 14px;
   }
   .header-main {
-    margin: 0 auto 0;
     padding: 0 14px;
   }
   .header {

@@ -1,8 +1,9 @@
 .footer {
   display: flex;
+  flex: 0 0 auto;
   flex-direction: column;
   box-sizing: border-box;
-  margin: 79px 70px 0 70px;
+  margin: 60px 70px 0 70px;
   padding-bottom: 20px;
 }
 
@@ -31,7 +32,15 @@
   flex: 1 1 auto;
 }
 
+.footer__links{
+  margin: 0;
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
 .footer__link {
+  
   margin: 0 0 0 20px;
   font-weight: 400;
   font-size: 13px;

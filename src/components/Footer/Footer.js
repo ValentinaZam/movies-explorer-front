@@ -12,19 +12,25 @@ function Footer() {
           {" "}
           © 2023
         </p>
-        <a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">
-          Яндекс.Практикум
-        </a>
-        <a
-          href="https://github.com/ValentinaZam"
-          className="footer__link"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Github
-        </a>
+        <ul className="footer__links">
+          <li>
+            <a className="footer__link" href="https://practicum.yandex.ru" target="_blank" rel="noreferrer">
+              Яндекс.Практикум
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/ValentinaZam"
+              className="footer__link"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Github
+            </a>
+          </li>
+        </ul>
       </div>
-    </footer>
+    </footer >
   );
 }
 

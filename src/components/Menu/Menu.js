@@ -11,6 +11,7 @@ function Menu({ handleClose }) {
                 <button
                     className="menu__close-button"
                     onClick={handleClose}
+                    type="button"
                 ></button>
                 <nav className="menu__links">
                     <NavLink

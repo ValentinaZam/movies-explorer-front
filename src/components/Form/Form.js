@@ -12,12 +12,12 @@ function Form({
   question,
 }) {
   return (
-    <div className="form__container">
+    <div className="form">
       <Link to="/" className="form__logo">
         <img src={logo} alt="логотип cайта" />
       </Link>
-      <h3 className="form__title">{title}</h3>
-      <form className="form" id="form" noValidate>
+      <h1 className="form__title">{title}</h1>
+      <form className="form__container" noValidate>
         <div>{children}</div>
         <button
           type="submit"

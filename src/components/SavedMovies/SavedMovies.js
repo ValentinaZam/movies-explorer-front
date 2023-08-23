@@ -2,15 +2,19 @@ import React from "react"
 import SearchForm from "../SearchForm/SearchForm"
 import MoviesCardList from "../MoviesCardList/MoviesCardList"
 import Footer from "../Footer/Footer"
+import Header from "../Header/Header"
 
 function SavedMovies() {
   return (
-    <section className="movies">
-      <SearchForm />
-      <MoviesCardList />
+    <div className="movies">
+      <Header isAuth={true} />
+      <main>
+        <SearchForm />
+        <MoviesCardList />
+      </main>
       <Footer />
-    </section>
+    </div>
   )
 }
 
-export default SavedMovies
+export default SavedMovies;

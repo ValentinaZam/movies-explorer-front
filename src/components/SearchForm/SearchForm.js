@@ -6,19 +6,22 @@ import find from "../../images/find.svg"
 function SearchForm() {
   return (
     <section className="search">
-      <form className="search__form" id="form">
-        <input
-          name="query"
-          className="search__input"
-          id="search-input"
-          type="text"
-          placeholder="Фильм"
-        ></input>
-        <button className="search__button" type="submit">
-          <img src={find} alt="Стрелка для поиска" className="search__button search__button_image" />
-        </button>
+      <form >
+        <div className="search__form">
+          <input
+            name="query"
+            className="search__input"
+            id="search-input"
+            type="text"
+            placeholder="Фильм"
+            required
+          ></input>
+          <button className="search__form-button" type="submit">
+            <img src={find} alt="Стрелка для поиска" className="search__button search__button-image" />
+          </button>
+        </div>
+        <FilterCheckbox />
       </form>
-      <FilterCheckbox />
     </section>
   );
 }
