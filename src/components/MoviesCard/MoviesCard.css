@@ -65,6 +65,11 @@
   cursor: pointer;
 }
 
+.card__like-button:hover{
+  opacity: .7;
+}
+
+
 .card__like-button--active {
   background-image: url("../../images/like-active.svg");
   width: 16px;

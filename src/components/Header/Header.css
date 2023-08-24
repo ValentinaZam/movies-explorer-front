@@ -25,10 +25,18 @@
     display: flex;
     text-decoration: none;
 }
+
+.header__button-container:hover{
+opacity: .7;
+}
+
 .header__button-container--active{
     padding-left: 45px;
     display: flex;
     text-decoration: none;
+}
+.header__button-container--active:hover{
+  opacity: .7;
 }
 
 .header__link-signin{
