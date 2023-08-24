@@ -5,7 +5,7 @@ import icon_main_acc from "../../images/profile.svg";
 
 function Menu({ handleClose }) {
     return (
-        <div className="menu__page-overlay">
+        <div className="menu">
             <div className="menu__overlay-container"></div>
             <div className="menu__menu">
                 <button
