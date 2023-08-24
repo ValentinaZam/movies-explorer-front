@@ -57,6 +57,7 @@
 }
 
 .profile__input:focus{
+  border-radius: 5px;
   outline: 4px ridge rgba(70, 165, 91, 0.6);
 }
 

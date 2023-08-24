@@ -25,6 +25,11 @@ line-height: normal;
   color: #8b8b8b;
 }
 
+.search__input:focus{
+  border-radius: 5px;
+  outline: 4px ridge rgba(70, 165, 91, 0.6);
+}
+
 .search__form-button {
   padding: 0;
   position:static;
