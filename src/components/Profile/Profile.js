@@ -45,7 +45,7 @@ function Profile() {
             <button type="submit" className="profile__button-save">
               Редактировать
             </button>
-            <Link type="button" className="profile__exit" to="/">
+            <Link className="profile__exit" to="/">
               Выйти из аккаунта
             </Link>
           </form>

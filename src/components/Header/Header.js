@@ -43,9 +43,8 @@ function Header({ isAuth }) {
                 Регистрация
             </Link>
 
-            <Link className="header__link-signin" to="/signin">
-                <button className="header__button-signin header__button"
-                    type="button">Войти</button>
+            <Link className="header__link-signin header__button" to="/signin">
+                Войти
             </Link>
         </div>
     </ header >)}

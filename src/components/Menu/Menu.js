@@ -18,21 +18,18 @@ function Menu({ handleClose }) {
                         exact
                         to="/"
                         className="menu__link"
-                        activeClassName="menu__link_active"
                     >
                         Главная
                     </NavLink>
                     <NavLink
                         to="/movies"
                         className="menu__link"
-                        activeClassName="menu__link_active"
                     >
                         Фильмы
                     </NavLink>
                     <NavLink
                         to="/saved-movies"
                         className="menu__link"
-                        activeClassName="menu__link_active"
                     >
                         Сохранённые фильмы
                     </NavLink>

@@ -68,10 +68,6 @@
       border-bottom: 2px solid transparent;
     }
   
-    .menu__link_active {
-      color: #2be080;
-    }
-  
     .menu__link:hover {
       border-bottom: 2px solid #FFF;
     }
