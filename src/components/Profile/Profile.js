@@ -3,11 +3,11 @@ import "./Profile.css";
 import { Link } from "react-router-dom";
 import Header from "../Header/Header";
 
-function Profile() {
+function Profile({ signOut, loggedIn }) {
 
   return (
     <div className="profile">
-      <Header isAuth={true} />
+      <Header isAuth={loggedIn} />
       <main>
         <section className="profile__container">
           <h1 className="profile__title">Привет, Валентина!</h1>
@@ -45,7 +45,7 @@ function Profile() {
             <button type="submit" className="profile__button-save">
               Редактировать
             </button>
-            <Link className="profile__exit" to="/">
+            <Link className="profile__exit" to="/" onClick={signOut}>
               Выйти из аккаунта
             </Link>
           </form>

@@ -1,8 +1,27 @@
-import React from "react"
+import React, { useState } from "react"
 import "../Form/Form.css"
 import Form from "../Form/Form"
 
-function Register() {
+function Register({ onSubmit }) {
+  const [formValue, setFormValue] = useState({
+    email: "",
+    password: "",
+    name: ""
+  })
+
+  const handleChangeLogged = (e) => {
+    const { name, value } = e.target
+    setFormValue({
+      ...formValue,
+      [name]: value
+    })
+  }
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onSubmit(formValue)
+  }
+
+
   return (
     <main>
       <section>
@@ -12,6 +31,7 @@ function Register() {
           question="Уже зарегистрированы?"
           linkText=" Войти"
           link="/signin"
+          onSubmit={handleSubmit}
         >
           <label className="form__label">
             Имя
@@ -24,6 +44,7 @@ function Register() {
               maxLength="40"
               required
               placeholder="Имя"
+              onChange={handleChangeLogged}
             />
           </label>
           <label className="form__label">
@@ -37,6 +58,7 @@ function Register() {
               placeholder="Почта"
               minLength="4"
               maxLength="40"
+              onChange={handleChangeLogged}
             />
           </label>
           <label className="form__label">
@@ -51,6 +73,7 @@ function Register() {
               placeholder="Пароль"
               minLength="6"
               maxLength="20"
+              onChange={handleChangeLogged}
             />
             <span className="form__input-error">Что-то пошло не так...</span>
           </label>
