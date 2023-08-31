@@ -10,7 +10,7 @@ import Profile from "../Profile/Profile"
 import "./App.css"
 import { CurrentUserContext } from "../Context/CurrentUserContext"
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute"
-import * as auth from "../Auth/Auth"
+import * as auth from "../../utils/Auth"
 import { api } from "../../utils/MainApi"
 
 function App() {
@@ -35,7 +35,6 @@ function App() {
     }, [loggedIn])
 
     function handleUpdateUser(data) {
-        // console.log(data)
         api
             .setUserInfo(data)
             .then((userInfo) => {
@@ -51,7 +50,6 @@ function App() {
             .then(() => {
                 setLoggedIn(true)
                 handleLogin(userInfo.email)
-                // navigate("/movies", { replace: true })
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`)
@@ -64,7 +62,6 @@ function App() {
             .then((info) => {
                 handleLoginSubmit({ email: data.email, password: data.password })
                 setCurrentUser(info)
-                // navigate("/signin")
             })
             .catch((err) => {
                 setErrorGlobal(false)
@@ -117,7 +114,6 @@ function App() {
                         <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
-                    {/* <Main loggedIn={loggedIn} /> */}
                 </div>
             </div>
         </CurrentUserContext.Provider>
