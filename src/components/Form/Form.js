@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
 import "./Form.css"
 import logo from "../../images/logo.svg"
@@ -10,20 +10,9 @@ function Form({
   title,
   buttonText,
   question,
-  onSubmit
+  onSubmit,
+  isValid
 }) {
-
-  // const [formValue, setFormValue] = useState({
-  //   name: "",
-  //   email: "",
-  //   password: ""
-  // })
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   console.log(formValue)
-  //   onSubmit(formValue)
-  // }
-
 
   return (
     <div className="form">
@@ -32,10 +21,11 @@ function Form({
       </Link>
       <h1 className="form__title">{title}</h1>
       <form className="form__container" noValidate onSubmit={onSubmit}>
-        <div>{children}</div>
+        <div className="form__labels">{children}</div>
         <button
           type="submit"
-          className="form__button-save"
+          className={isValid ? "form__button-save" : "form__button-save_active"}
+          disabled={!isValid}
         >
           {buttonText}
         </button>

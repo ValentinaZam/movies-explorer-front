@@ -17,25 +17,12 @@ function App() {
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [email, setEmail] = useState("");
-
-
+    const [errorGlobal, setErrorGlobal] = useState(true);
 
     const handleLogin = (data) => {
         setLoggedIn(true)
-        setEmail(data)
+        // setEmail(data)
     }
-
-    const handleRegistrationSubmit = (data) => {
-        auth
-            .register(data)
-            .then(() => {
-                navigate("/signin")
-            })
-            .catch((err) => {
-                console.log(`Ошибка: ${err}`)
-            })
-    }
-
 
     const handleLoginSubmit = (userInfo) => {
         auth
@@ -43,25 +30,40 @@ function App() {
             .then(() => {
                 setLoggedIn(true)
                 handleLogin(userInfo.email)
-                navigate("/", { replace: true })
+                // navigate("/movies", { replace: true })
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`)
             })
     }
+
+    const handleRegistrationSubmit = (data) => {
+        auth
+            .register(data)
+            .then((info) => {
+                handleLoginSubmit({ email: data.email, password: data.password })
+                setCurrentUser(info)
+                // navigate("/signin")
+            })
+            .catch((err) => {
+                setErrorGlobal(false)
+                console.log(`Ошибка: ${err}`)
+            })
+    }
+
+
     useEffect(() => {
         const tokenUser = localStorage.getItem("token")
         if (tokenUser) {
             auth
                 .checkToken(tokenUser)
                 .then((user) => {
-
                     handleLogin(user.email)
-                    navigate("/", { replace: true })
+                    navigate("/movies", { replace: true })
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
         }
-    }, [loggedIn])
+    }, [loggedIn, errorGlobal])
 
     const signOut = () => {
         setLoggedIn(false)
@@ -89,7 +91,7 @@ function App() {
                             signOut={signOut}
                             element={Profile}
                         />} />
-                        <Route path="/signup" element={<Register onSubmit={handleRegistrationSubmit} />} />
+                        <Route path="/signup" element={<Register onSubmit={handleRegistrationSubmit} errorGlobal={errorGlobal} />} />
                         <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
