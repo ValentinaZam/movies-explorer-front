@@ -11,6 +11,7 @@ import "./App.css"
 import { CurrentUserContext } from "../Context/CurrentUserContext"
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute"
 import * as auth from "../Auth/Auth"
+import { api } from "../../utils/MainApi"
 
 function App() {
     const navigate = useNavigate()
@@ -22,6 +23,26 @@ function App() {
     const handleLogin = (data) => {
         setLoggedIn(true)
         // setEmail(data)
+    }
+
+    useEffect(() => {
+        if (loggedIn) {
+            api
+                .getUserInfo()
+                .then((email) => setCurrentUser(email))
+                .catch((err) => console.log(`Ошибка ${err}`))
+        }
+    }, [loggedIn])
+
+    function handleUpdateUser(data) {
+        // console.log(data)
+        api
+            .setUserInfo(data)
+            .then((userInfo) => {
+
+                setCurrentUser(userInfo)
+            })
+            .catch((err) => console.log(`Ошибка ${err}`))
     }
 
     const handleLoginSubmit = (userInfo) => {
@@ -87,6 +108,7 @@ function App() {
                             element={SavedMovies}
                         />} />
                         <Route path="/profile" element={<ProtectedRoute
+                            onSubmit={handleUpdateUser}
                             loggedIn={loggedIn}
                             signOut={signOut}
                             element={Profile}

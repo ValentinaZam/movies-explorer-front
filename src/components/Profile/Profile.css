@@ -97,6 +97,22 @@
   opacity: .7;
 }
 
+.profile__button-save_active{
+  margin-top: 203px;
+  min-height: 16px;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  border: none;
+  background: #202020;
+  color: #866d6d;
+  cursor: pointer;
+}
+
 .profile__exit {
   margin-top: 16px;
   min-height: 16px;

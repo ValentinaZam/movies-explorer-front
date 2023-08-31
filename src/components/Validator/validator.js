@@ -17,7 +17,7 @@ export function validator(data, config) {
                 break;
             }
             case "isEmail": {
-                const emailRegExp = /^\S+@\S+\.\S+$/g;
+                const emailRegExp = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
                 statusValidate = !emailRegExp.test(data);
                 break;
             }
