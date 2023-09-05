@@ -1,4 +1,4 @@
-class Api {
+class MainApi {
     constructor({ url }) {
         this._url = url
     }
@@ -15,17 +15,17 @@ class Api {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
+                "Content-type": "application/json"
             }
         }).then((res) => this._checkResponse(res))
     }
 
-    getInitialCards() {
-        return fetch(this._url + "/cards", {
+    getInitialSavedMovies() {
+        return fetch(this._url + "/movies", {
             method: "GET",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
+                "Content-type": "application/json"
             }
         }).then((res) => this._checkResponse(res))
     }
@@ -35,7 +35,7 @@ class Api {
             method: "PATCH",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
+                "Content-type": "application/json"
             },
             body: JSON.stringify({
                 name: data.name,
@@ -46,52 +46,61 @@ class Api {
 
 
 
-    addCard(data) {
-        return fetch(this._url + "/cards", {
+    addSaveMovie(data) {
+        return fetch(this._url + "/movies", {
             method: "POST",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
+                "Content-type": "application/json"
             },
             body: JSON.stringify({
-                name: data.name,
-                link: data.link
+                country: data.country,
+                director: data.director,
+                duration: data.duration,
+                year: data.year,
+                description: data.description,
+                image: `https://api.nomoreparties.co${data.image.url}`,
+                trailerLink: data.trailerLink,
+                nameRU: data.nameRU,
+                nameEN: data.nameEN,
+                thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
+                movieId: data.id,
             })
         }).then((res) => this._checkResponse(res))
     }
 
-    deleteCards(cardId) {
-        return fetch(this._url + "/cards/" + cardId, {
+    deleteMovie(movieId) {
+        return fetch(this._url + "/movies/" + movieId, {
             method: "DELETE",
             headers: {
                 authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
+                "Content-type": "application/json"
             }
         }).then((res) => this._checkResponse(res))
     }
 
-    deleteLike(cardId) {
-        return fetch(this._url + "/cards/" + cardId + "/likes", {
-            method: "DELETE",
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
-            }
-        }).then((res) => this._checkResponse(res))
-    }
+    // deleteLike(movieId) {
+    //     return fetch(this._url + "/movies/" + movieId + "/likes", {
+    //         method: "DELETE",
+    //         headers: {
+    //             authorization: `Bearer ${localStorage.getItem("token")}`,
+    //             "Content-type": "application/json"
+    //         }
+    //     }).then((res) => this._checkResponse(res))
+    // }
 
-    addLike(cardId) {
-        return fetch(this._url + "/cards/" + cardId + "/likes", {
-            method: "PUT",
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "content-type": "application/json"
-            }
-        }).then((res) => this._checkResponse(res))
-    }
+    // addLike(movieId) {
+    //     return fetch(this._url + "/movies/" + movieId + "/likes", {
+    //         method: "PUT",
+    //         headers: {
+    //             authorization: `Bearer ${localStorage.getItem("token")}`,
+    //             "Content-type": "application/json"
+    //         }
+    //     }).then((res) => this._checkResponse(res))
+    // }
 }
 
-export const api = new Api({
+export const mainApi = new MainApi({
     // url: "https://api.project-mesto-deploy.nomoredomains.xyz",
     url: "http://localhost:3000"
 })

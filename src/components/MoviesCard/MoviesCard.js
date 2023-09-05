@@ -5,7 +5,7 @@ import { useLocation } from "react-router-dom";
 
 // Временная карточка
 
-function MoviesCard() {
+function MoviesCard({ movie, isMoviesSavedPage }) {
   const location = useLocation();
   // Временная функция по установке лайка
   const [liked, setLiked] = useState(false);
@@ -15,6 +15,10 @@ function MoviesCard() {
     setLiked(!liked);
   };
 
+  const movieImage = isMoviesSavedPage
+    ? movie.image
+    : `https://api.nomoreparties.co/${movie.image.url}`;
+
   const buttonImages = () => {
     if (location.pathname === "/movies") return (liked ? "card__like-button--active" : "card__like-button");
     if (location.pathname === "/saved-movies") return "card__delete-button";
@@ -23,7 +27,7 @@ function MoviesCard() {
   return (
     <>
       <li className="card">
-        <img src={imageFilm} alt={nameImage} className="card__image" />
+        <img src={movieImage} alt={nameImage} className="card__image" />
         <div className="card__container">
           <div className="card__title-block">
             <h2 className="card__title">{nameImage}</h2>

@@ -11,23 +11,23 @@ import "./App.css"
 import { CurrentUserContext } from "../Context/CurrentUserContext"
 import { ProtectedRoute } from "../ProtectedRoute/ProtectedRoute"
 import * as auth from "../../utils/Auth"
-import { api } from "../../utils/MainApi"
+import { mainApi } from "../../utils/MainApi"
 
 function App() {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
-    const [email, setEmail] = useState("");
+    // const [email, setEmail] = useState("");
     const [errorGlobal, setErrorGlobal] = useState(true);
 
-    const handleLogin = (data) => {
-        setLoggedIn(true)
-        // setEmail(data)
-    }
+    // const handleLogin = (data) => {
+    //     setLoggedIn(true)
+    //     setEmail(data)
+    // }
 
     useEffect(() => {
         if (loggedIn) {
-            api
+            mainApi
                 .getUserInfo()
                 .then((email) => setCurrentUser(email))
                 .catch((err) => console.log(`Ошибка ${err}`))
@@ -35,7 +35,7 @@ function App() {
     }, [loggedIn])
 
     function handleUpdateUser(data) {
-        api
+        mainApi
             .setUserInfo(data)
             .then((userInfo) => {
 
@@ -49,7 +49,7 @@ function App() {
             .authorize(userInfo)
             .then(() => {
                 setLoggedIn(true)
-                handleLogin(userInfo.email)
+                // handleLogin(userInfo.email)
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`)
@@ -76,8 +76,10 @@ function App() {
             auth
                 .checkToken(tokenUser)
                 .then((user) => {
-                    handleLogin(user.email)
+                    // handleLogin(user.email)
                     navigate("/movies", { replace: true })
+                    console.log(loggedIn)
+                    // setLoggedIn(true)
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
         }
@@ -85,10 +87,42 @@ function App() {
 
     const signOut = () => {
         setLoggedIn(false)
-        localStorage.removeItem("token")
-        setEmail("")
+        localStorage.clear();
+        // localStorage.removeItem("token")
+        // localStorage.removeItem("allMovies")
+        // localStorage.removeItem("filteredMovies")
+        // setEmail("")
         navigate("/")
     }
+
+    const filterShortMovies = (movies) => {
+        const filteredMovies = [];
+
+        for (const movie of movies) {
+            if (movie.duration <= 40) {
+                filteredMovies.push(movie);
+            }
+        }
+
+        return filteredMovies;
+    };
+
+    const filterMoviesByName = (movies, request) => {
+        const lowercaseRequest = request.toLowerCase();
+
+        return movies.reduce((filteredMovies, movie) => {
+            const { nameRU, nameEN } = movie;
+
+            if (
+                nameRU.toLowerCase().includes(lowercaseRequest) ||
+                nameEN.toLowerCase().includes(lowercaseRequest)
+            ) {
+                filteredMovies.push(movie);
+            }
+
+            return filteredMovies;
+        }, []);
+    };
 
     return (
         <CurrentUserContext.Provider value={currentUser}>
@@ -98,6 +132,8 @@ function App() {
                         <Route path="/" element={<Main loggedIn={loggedIn} />} />
                         <Route path="/movies" element={<ProtectedRoute
                             loggedIn={loggedIn}
+                            filterMoviesByName={filterMoviesByName}
+                            filterShortMovies={filterShortMovies}
                             element={Movies}
                         />} />
                         <Route path="/saved-movies" element={<ProtectedRoute
