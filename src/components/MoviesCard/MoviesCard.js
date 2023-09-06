@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./MoviesCard.css";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 // Временная карточка
 
@@ -8,11 +8,14 @@ function MoviesCard({ movie, isMoviesSavedPage }) {
   const location = useLocation();
   // Временная функция по установке лайка
   const [liked, setLiked] = useState(false);
-  const nameImage = "33 слова о дизайне"
 
   const toggleLike = () => {
     setLiked(!liked);
   };
+
+  function convertTime(number) {
+    return `${Math.floor(number / 60)}ч ${number % 60}м`;
+  }
 
   const movieImage = isMoviesSavedPage
     ? movie.image
@@ -26,11 +29,14 @@ function MoviesCard({ movie, isMoviesSavedPage }) {
   return (
     <>
       <li className="card">
-        <img src={movieImage} alt={nameImage} className="card__image" />
+        <a href={movie.trailerLink} target="_blank"
+          rel="noreferrer">
+          <img src={movieImage} alt={movie.nameRU} className="card__image" />
+        </a>
         <div className="card__container">
           <div className="card__title-block">
-            <h2 className="card__title">{nameImage}</h2>
-            <span className="card__time">120</span>
+            <h2 className="card__title">{movie.nameRU}</h2>
+            <span className="card__time">{convertTime(movie.duration)}</span>
           </div>
           <button type="button" className={buttonImages()} onClick={toggleLike}></button>
         </div>

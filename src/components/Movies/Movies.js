@@ -29,6 +29,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
 
   const handleCheckBox = () => {
     setIsShortMovie(!isShortMovie);
+    localStorage.setItem("isShortMovie", JSON.stringify(!isShortMovie));
   };
 
 

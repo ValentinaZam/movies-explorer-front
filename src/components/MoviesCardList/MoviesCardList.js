@@ -5,60 +5,78 @@ import { useLocation } from "react-router";
 
 function MoviesCardList({ movies, searchText }) {
   const location = useLocation();
-  const [visibleCards, setVisibleCards] = useState();
+  const [visibleCards, setVisibleCards] = useState(4);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const [resize, setResize] = useState(null);
 
   const isMoviesSavedPage = location.pathname === "/saved-movies";
 
   const displayElements = () => {
-    if (windowWidth >= 1280) {
-      setVisibleCards((prev) => prev + 4);
-    } else if (
-      windowWidth >= 768 &&
-      windowWidth < 1280
-    ) {
-      setVisibleCards((prev) => prev + 2);
-    } else if (
-      windowWidth >= 320 &&
-      windowWidth < 768
-    ) {
-      setVisibleCards((prev) => prev + 2);
+    switch (true) {
+      case windowWidth > 1023:
+        setVisibleCards((prev) => prev + 4);
+        break;
+      case windowWidth >= 320 && windowWidth <= 1023:
+        setVisibleCards((prev) => prev + 2);
+        break;
+      default:
+        break;
     }
   };
 
+  useEffect(() => {
+    switch (true) {
+      case windowWidth > 1023:
+        setVisibleCards(16);
+        break;
+      case windowWidth <= 1023 && windowWidth > 750:
+        setVisibleCards(8);
+        break;
+      case windowWidth >= 320 && windowWidth <= 1023:
+        setVisibleCards(5);
+        break;
+      default:
+        break;
+    }
+  }, [windowWidth])
+
   const handleResize = useCallback(() => {
-    clearTimeout(resize);
-
-    const timer = setTimeout(() => {
+    if (windowWidth !== window.innerWidth) {
       setWindowWidth(window.innerWidth);
-    }, 100);
-    setResize(timer);
-  }, [resize]);
-
+    }
+  }, [windowWidth]);
 
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    let timer;
+    const handleResizeWithDelay = () => {
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        handleResize();
+      }, 1000);
+    };
+
+    window.addEventListener("resize", handleResizeWithDelay);
+
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", handleResizeWithDelay);
     };
   }, [handleResize]);
 
   return (
     <section className="cards">
-      {movies.length === 0 ? (<p className="cards__message">{searchText || "Нужно ввести ключевое слово"}</p>) : (
+      {movies.length === 0 ? (<p className="cards__message">{searchText ? searchText : "Нужно ввести ключевое слово"}</p>) : (
         <>
           <ul className="cards__list">
-            {movies.slice(0, visibleCards).map(movieInfo => (
-              <MoviesCard movie={movieInfo}
-                key={isMoviesSavedPage ? movieInfo._id : movieInfo.id}
+            {movies.slice(0, visibleCards).map(movie => (
+              <MoviesCard movie={movie}
+                key={isMoviesSavedPage ? movie._id : movie.id}
                 // onClick={onClick}
-                // isSaved={handleIsSaved(movieInfo)}
+                // isSaved={handleIsSaved(movie)}
                 isMoviesSavedPage={isMoviesSavedPage} />))}
 
           </ul>
           <div className="cards__button-container">
-            <button className="cards__button" type="button" onClick={displayElements}>Ещё</button>
+            {visibleCards < movies.length && <button className="cards__button" type="button" onClick={displayElements}>Ещё</button>}
           </div>
         </>
       )}

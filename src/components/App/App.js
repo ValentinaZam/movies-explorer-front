@@ -45,7 +45,7 @@ function App() {
                 setLoggedIn(true)
             })
             .catch((err) => {
-                console.log(`Ошибка: ${err}`)
+                setErrorGlobal(err.message)
             })
     }
 
@@ -134,7 +134,7 @@ function App() {
                             element={Profile}
                         />} />
                         <Route path="/signup" element={<Register onSubmit={handleRegistrationSubmit} errorGlobal={errorGlobal} />} />
-                        <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
+                        <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} errorGlobal={errorGlobal} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>

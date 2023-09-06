@@ -20,7 +20,6 @@ class MoviesApi {
 }
 
 export const moviesApi = new MoviesApi({
-    // url: "https://api.project-mesto-deploy.nomoredomains.xyz",
     url: "https://api.nomoreparties.co/beatfilm-movies"
 })
 
