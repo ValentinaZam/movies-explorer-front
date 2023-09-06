@@ -138,7 +138,8 @@ function Register({ onSubmit, errorGlobal }) {
             />
             <span className="form__input-error">{errors.password}</span>
 
-            <span className="form__input-error form__input-error_general">{!errorGlobal ? "Что-то пошло не так, повторите попытку" : ""}</span>
+            <span className="form__input-error form__input-error_general">
+              {errorGlobal}</span>
           </label>
 
         </Form>

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import imageFilm from "../../images/image-movies.jpg"
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 

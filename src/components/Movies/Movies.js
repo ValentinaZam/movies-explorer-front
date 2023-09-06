@@ -20,7 +20,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
     const filteredFilms = filterMoviesByName(movies, request);
     localStorage.setItem("filteredMovies", JSON.stringify(filteredFilms));
     if (!filteredFilms.length) {
-      setSearchText("По вашему запросу фильмов не найдено");
+      setSearchText("Ничего не найдено");
     }
     setFilterMovies(
       isShort ? filterShortMovies(filteredFilms) : filteredFilms
@@ -47,6 +47,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
         .catch((error) => {
           console.log(`Ошибка: ${error}`);
           setIsLoading(false);
+          setSearchText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
         });
     } else {
       handleFilterMovies(allMovies, req, isShort);
@@ -67,7 +68,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
           isShortMovie ? filterShortMovies(defaultMovies) : defaultMovies
         );
       } else {
-        setSearchText("По вашему запросу ничего не найдено");
+        setSearchText("Ничего не найдено");
       }
     }
     setIsLoading(false);

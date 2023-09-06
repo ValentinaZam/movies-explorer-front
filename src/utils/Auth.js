@@ -1,11 +1,11 @@
 //export const BASE_URL = "https://api.cine-selecta.nomoreparties.co";
 export const BASE_URL = "http://localhost:3000";
 
-const checkResponse = (res) => {
+const checkResponse = async (res) => {
   if (res.ok) {
     return res.json()
   }
-  return Promise.reject(`Ошибка: ${res}`)
+  return Promise.reject(await res.json())
 }
 
 export const register = (data) => {

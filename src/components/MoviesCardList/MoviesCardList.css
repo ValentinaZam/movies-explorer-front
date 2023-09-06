@@ -11,8 +11,15 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px 20px;
- max-height: 1315px;
+}
 
+.cards__message {
+  margin: 40px auto;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  max-width: 410px;
+  text-align: center;
 }
 
 .cards__button-container {
@@ -52,7 +59,6 @@
     margin: 81px auto -37px;
     grid-template-columns: repeat(2, 339px);
     gap: 30px 36px;
-    max-height: 1238px;
   }
 
   .cards__button-container {
@@ -66,7 +72,6 @@
     height: 237px;
   }
   .cards__list {
-    max-height: 1307px;
     margin: 90px auto 10px;
     grid-template-columns: repeat(1, 300px);
     gap: 23px 0;

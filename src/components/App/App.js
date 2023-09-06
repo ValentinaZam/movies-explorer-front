@@ -17,13 +17,7 @@ function App() {
     const navigate = useNavigate()
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
-    // const [email, setEmail] = useState("");
-    const [errorGlobal, setErrorGlobal] = useState(true);
-
-    // const handleLogin = (data) => {
-    //     setLoggedIn(true)
-    //     setEmail(data)
-    // }
+    const [errorGlobal, setErrorGlobal] = useState("");
 
     useEffect(() => {
         if (loggedIn) {
@@ -49,7 +43,6 @@ function App() {
             .authorize(userInfo)
             .then(() => {
                 setLoggedIn(true)
-                // handleLogin(userInfo.email)
             })
             .catch((err) => {
                 console.log(`Ошибка: ${err}`)
@@ -64,8 +57,7 @@ function App() {
                 setCurrentUser(info)
             })
             .catch((err) => {
-                setErrorGlobal(false)
-                console.log(`Ошибка: ${err}`)
+                setErrorGlobal(err.message)
             })
     }
 
@@ -75,11 +67,10 @@ function App() {
         if (tokenUser) {
             auth
                 .checkToken(tokenUser)
-                .then((user) => {
-                    // handleLogin(user.email)
+                .then(() => {
                     navigate("/movies", { replace: true })
                     console.log(loggedIn)
-                    // setLoggedIn(true)
+                    setLoggedIn(true)
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
         }
@@ -88,10 +79,6 @@ function App() {
     const signOut = () => {
         setLoggedIn(false)
         localStorage.clear();
-        // localStorage.removeItem("token")
-        // localStorage.removeItem("allMovies")
-        // localStorage.removeItem("filteredMovies")
-        // setEmail("")
         navigate("/")
     }
 
