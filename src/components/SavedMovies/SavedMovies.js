@@ -31,9 +31,8 @@ function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMov
     if (savedMovies) {
       const moviesVisible = filterMoviesByName(savedMovies, text);
       if (moviesVisible.length === 0) {
-        setSearchText("что тут написать?");
+        setSearchText("Ничего не найдено");
       }
-      console.log(moviesVisible)
       setFilterMovies(
 
         isShortMovie ? filterShortMovies(moviesVisible) : moviesVisible
