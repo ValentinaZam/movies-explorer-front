@@ -96,15 +96,15 @@ function App() {
         return filteredMovies;
     };
 
-    const filterMoviesByName = (movies, request) => {
-        const lowercaseRequest = request.toLowerCase();
+    const filterMoviesByName = (movies, text) => {
+        const lowercaseText = text.toLowerCase();
 
         return movies.reduce((filteredMovies, movie) => {
             const { nameRU, nameEN } = movie;
 
             if (
-                nameRU.toLowerCase().includes(lowercaseRequest) ||
-                nameEN.toLowerCase().includes(lowercaseRequest)
+                nameRU.toLowerCase().includes(lowercaseText) ||
+                nameEN.toLowerCase().includes(lowercaseText)
             ) {
                 filteredMovies.push(movie);
             }

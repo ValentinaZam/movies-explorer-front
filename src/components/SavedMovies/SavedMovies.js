@@ -52,7 +52,7 @@ function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMov
       <main>
         <SearchForm onChange={handleCheckbox} onSubmit={handleSearchMovies} />
         <MoviesCardList movies={filterMovies}
-          searchText={searchText} onDelete={handleDelete} />
+          searchText={searchText} onClick={handleDelete} />
       </main>
       <Footer />
     </div>

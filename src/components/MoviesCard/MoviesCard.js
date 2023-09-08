@@ -6,7 +6,7 @@ function MoviesCard({ movie, onClick, isLike }) {
   const location = useLocation();
   const isMoviesSavedPage = location.pathname === "/saved-movies";
   const handleClick = () => {
-    // console.log(movie)
+    console.log(movie)
     // Здесь приходит id (НЕ _id)
     // if (isMoviesSavedPage) {
     //   onClick(movie.id)

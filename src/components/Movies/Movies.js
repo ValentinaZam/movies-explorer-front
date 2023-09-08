@@ -76,11 +76,11 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
 
 
   const handleClickMovie = (movie) => {
-    const savedMovie = savedMovies.find(
+    const movieDelete = savedMovies.find(
       (savedFilm) => savedFilm.movieId === movie.id
     );
-    if (savedMovie) {
-      onDeleteMovie(savedMovie._id);
+    if (movieDelete) {
+      onDeleteMovie(movieDelete._id);
       return;
     }
     onSaveMovies(movie);
