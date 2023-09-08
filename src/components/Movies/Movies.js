@@ -86,10 +86,10 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
   };
 
   return (<div className="movies">
-    {/* {!isLoading && <Preloader />} */}
     <Header isAuth={loggedIn} />
     <main>
       <SearchForm onSubmit={findMovie} onChange={handleCheckBox} isShortMovie={isShortMovie} />
+      {isLoading && <Preloader />}
       <MoviesCardList movies={filterMovies}
         searchText={searchText} savedMovies={savedMovies} onClick={handleClickMovie} />
 
