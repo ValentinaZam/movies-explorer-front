@@ -19,8 +19,6 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false)
     const [errorGlobal, setErrorGlobal] = useState("");
     const [savedMovies, setSavedMovies] = useState([]);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
 
     function resetErrorGlobal() {
         setErrorGlobal("");
@@ -121,10 +119,10 @@ function App() {
             mainApi.getInitialSavedMovies()
                 .then((myMovies) => {
                     setSavedMovies(myMovies);
-                    setIsLoggedIn(true);
+                    setLoggedIn(true);
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
-                .finally(() => setIsLoading(false))
+
         }
 
     }, [loggedIn])
