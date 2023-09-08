@@ -7,11 +7,13 @@ import Preloader from "../Preloader/Preloader";
 import Header from "../Header/Header";
 import { moviesApi } from "../../utils/MoviesApi";
 
-function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange }) {
-  // const [movies, setMovies] = useState(true);
+function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, onSaveMovies, onDeleteMovie }) {
+
   const [isLoading, setIsLoading] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const [isShortMovie, setIsShortMovie] = useState();
+  const checkIsShotMovies =
+    JSON.parse(localStorage.getItem("isShortMovie")) ?? false;
+  const [isShortMovie, setIsShortMovie] = useState(checkIsShotMovies);
   const allMovies = JSON.parse(localStorage.getItem("allMovies")) ?? [];
   const [filterMovies, setFilterMovies] = useState([]);
 
@@ -33,16 +35,16 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
   };
 
 
-  const findMovie = (req, isShort) => {
-
+  const findMovie = (req) => {
     setIsLoading(true);
     setSearchText("");
     if (!allMovies.length) {
       moviesApi
         .getInitialMovies()
         .then((movies) => {
+          console.log(movies)
           localStorage.setItem("allMovies", JSON.stringify(movies));
-          handleFilterMovies(movies, req, isShort);
+          handleFilterMovies(movies, req);
           setIsLoading(false);
         })
         .catch((error) => {
@@ -51,20 +53,17 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
           setSearchText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
         });
     } else {
-      handleFilterMovies(allMovies, req, isShort);
+      handleFilterMovies(allMovies, req);
       setIsLoading(false);
     }
-
-    // localStorage.setItem("request", req);
-    // localStorage.setItem("isShortMovie", isShort);
+    localStorage.setItem("request", req);
   };
 
   useEffect(() => {
-    // setIsLoading(true);
+    setIsLoading(true);
     const defaultMovies = JSON.parse(localStorage.getItem("filteredMovies"));
     if (defaultMovies) {
       if (defaultMovies.length !== 0) {
-        // setIsShortMovie(JSON.parse(localStorage.getItem("isShortMovie")));
         setFilterMovies(
           isShortMovie ? filterShortMovies(defaultMovies) : defaultMovies
         );
@@ -75,16 +74,26 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, handleChange 
     setIsLoading(false);
   }, [filterShortMovies, isShortMovie]);
 
+
+  const handleClickMovie = (movie) => {
+    const savedMovie = savedMovies.find(
+      (savedFilm) => savedFilm.movieId === movie.id
+    );
+    if (savedMovie) {
+      onDeleteMovie(savedMovie._id);
+      return;
+    }
+    onSaveMovies(movie);
+  };
+
   return (<div className="movies">
     {/* {!isLoading && <Preloader />} */}
     <Header isAuth={loggedIn} />
     <main>
-      <SearchForm onSubmit={findMovie} handleChange={handleChange} isShortMovie={isShortMovie} />
+      <SearchForm onSubmit={findMovie} onChange={handleCheckBox} isShortMovie={isShortMovie} />
       <MoviesCardList movies={filterMovies}
+        searchText={searchText} savedMovies={savedMovies} onClick={handleClickMovie} />
 
-        searchText={searchText}
-
-      />
     </main>
     <Footer />
   </div>

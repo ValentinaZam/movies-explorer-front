@@ -3,7 +3,7 @@ import "./MoviesCardList.css"
 import MoviesCard from "../MoviesCard/MoviesCard"
 import { useLocation } from "react-router";
 
-function MoviesCardList({ movies, searchText }) {
+function MoviesCardList({ movies, searchText, onClick, savedMovies }) {
   const location = useLocation();
   const [visibleCards, setVisibleCards] = useState(4);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -52,7 +52,7 @@ function MoviesCardList({ movies, searchText }) {
 
       timer = setTimeout(() => {
         handleResize();
-      }, 1000);
+      }, 500);
     };
 
     window.addEventListener("resize", handleResizeWithDelay);
@@ -62,6 +62,14 @@ function MoviesCardList({ movies, searchText }) {
     };
   }, [handleResize]);
 
+  const handleIsLike = (movie) => {
+    if (!isMoviesSavedPage) {
+      const savedMovie = savedMovies.find((film) => film.movieId === movie.id);
+      return !!savedMovie;
+    }
+    return true;
+  };
+
   return (
     <section className="cards">
       {movies.length === 0 ? (<p className="cards__message">{searchText ? searchText : "Нужно ввести ключевое слово"}</p>) : (
@@ -70,9 +78,9 @@ function MoviesCardList({ movies, searchText }) {
             {movies.slice(0, visibleCards).map(movie => (
               <MoviesCard movie={movie}
                 key={isMoviesSavedPage ? movie._id : movie.id}
-                // onClick={onClick}
-                // isSaved={handleIsSaved(movie)}
-                isMoviesSavedPage={isMoviesSavedPage} />))}
+                onClick={onClick}
+                isLike={handleIsLike(movie)}
+              />))}
 
           </ul>
           <div className="cards__button-container">

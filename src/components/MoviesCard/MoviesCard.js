@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 import "./MoviesCard.css";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
-// Временная карточка
-
-function MoviesCard({ movie, isMoviesSavedPage }) {
+function MoviesCard({ movie, onClick, isLike }) {
   const location = useLocation();
-  // Временная функция по установке лайка
-  const [liked, setLiked] = useState(false);
-
-  const toggleLike = () => {
-    setLiked(!liked);
+  const isMoviesSavedPage = location.pathname === "/saved-movies";
+  const handleClick = () => {
+    // console.log(movie)
+    // Здесь приходит id (НЕ _id)
+    // if (isMoviesSavedPage) {
+    //   onClick(movie.id)
+    // } else {
+    //   onClick(movie);
+    // }
+    onClick(movie)
   };
 
   function convertTime(number) {
@@ -22,7 +25,7 @@ function MoviesCard({ movie, isMoviesSavedPage }) {
     : `https://api.nomoreparties.co/${movie.image.url}`;
 
   const buttonImages = () => {
-    if (location.pathname === "/movies") return (liked ? "card__like-button--active" : "card__like-button");
+    if (location.pathname === "/movies") return (isLike ? "card__like-button--active" : "card__like-button");
     if (location.pathname === "/saved-movies") return "card__delete-button";
   }
 
@@ -38,7 +41,7 @@ function MoviesCard({ movie, isMoviesSavedPage }) {
             <h2 className="card__title">{movie.nameRU}</h2>
             <span className="card__time">{convertTime(movie.duration)}</span>
           </div>
-          <button type="button" className={buttonImages()} onClick={toggleLike}></button>
+          <button type="button" className={buttonImages()} onClick={handleClick}></button>
         </div>
       </li>
     </>

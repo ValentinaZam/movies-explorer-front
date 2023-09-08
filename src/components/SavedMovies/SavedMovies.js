@@ -1,16 +1,58 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import SearchForm from "../SearchForm/SearchForm"
 import MoviesCardList from "../MoviesCardList/MoviesCardList"
 import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 
-function SavedMovies() {
+function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, onDeleteMovie }) {
+  // savedMovies = JSON.parse(localStorage.getItem("savedMovies")) ?? [];
+  const [searchText, setSearchText] = useState("");
+  const [filterMovies, setFilterMovies] = useState([]);
+  const [isShortMovie, setIsShortMovie] = useState();
+  const [text, setText] = useState("");
+  const handleCheckbox = () => {
+    if (savedMovies) {
+      setIsShortMovie(!isShortMovie);
+    }
+  };
+
+  const handleSearchMovies = async (req) => {
+    if (savedMovies) {
+      setSearchText("");
+      setFilterMovies(filterMoviesByName(savedMovies, req));
+      setText(req);
+    }
+  };
+
+  const handleDelete = ({ _id: id }) => {
+    onDeleteMovie(id)
+  }
+
+  useEffect(() => {
+    if (savedMovies) {
+      const moviesVisible = filterMoviesByName(
+        savedMovies,
+        text
+        // isShortMovie
+      );
+      if (moviesVisible.length === 0) {
+        setSearchText("что тут написать?");
+      }
+      setFilterMovies(
+        isShortMovie ? filterShortMovies(moviesVisible) : moviesVisible
+      );
+      return;
+    }
+    setSearchText("И тут");
+  }, [filterMoviesByName, filterShortMovies, isShortMovie, savedMovies, text]);
+
   return (
     <div className="movies">
-      <Header isAuth={true} />
+      <Header isAuth={loggedIn} />
       <main>
-        <SearchForm />
-        <MoviesCardList />
+        <SearchForm onChange={handleCheckbox} onSubmit={handleSearchMovies} />
+        <MoviesCardList movies={filterMovies}
+          searchText={searchText} onDelete={handleDelete} />
       </main>
       <Footer />
     </div>

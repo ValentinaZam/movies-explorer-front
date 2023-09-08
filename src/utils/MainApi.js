@@ -20,16 +20,6 @@ class MainApi {
         }).then((res) => this._checkResponse(res))
     }
 
-    getInitialSavedMovies() {
-        return fetch(this._url + "/movies", {
-            method: "GET",
-            headers: {
-                authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-type": "application/json"
-            }
-        }).then((res) => this._checkResponse(res))
-    }
-
     setUserInfo(data) {
         return fetch(this._url + "/users/me", {
             method: "PATCH",
@@ -44,9 +34,8 @@ class MainApi {
         }).then((res) => this._checkResponse(res))
     }
 
-
-
     addSaveMovie(data) {
+
         return fetch(this._url + "/movies", {
             method: "POST",
             headers: {
@@ -66,6 +55,16 @@ class MainApi {
                 thumbnail: `https://api.nomoreparties.co${data.image.formats.thumbnail.url}`,
                 movieId: data.id,
             })
+        }).then((res) => this._checkResponse(res))
+    }
+
+    getInitialSavedMovies() {
+        return fetch(this._url + "/movies", {
+            method: "GET",
+            headers: {
+                authorization: `Bearer ${localStorage.getItem("token")}`,
+                "Content-type": "application/json"
+            }
         }).then((res) => this._checkResponse(res))
     }
 

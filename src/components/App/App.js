@@ -18,6 +18,9 @@ function App() {
     const [currentUser, setCurrentUser] = useState({})
     const [loggedIn, setLoggedIn] = useState(false)
     const [errorGlobal, setErrorGlobal] = useState("");
+    const [savedMovies, setSavedMovies] = useState([]);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         if (loggedIn) {
@@ -69,7 +72,6 @@ function App() {
                 .checkToken(tokenUser)
                 .then(() => {
                     navigate("/movies", { replace: true })
-                    console.log(loggedIn)
                     setLoggedIn(true)
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
@@ -111,6 +113,48 @@ function App() {
         }, []);
     };
 
+
+    useEffect(() => {
+        if (loggedIn) {
+            mainApi.getInitialSavedMovies()
+                .then((myMovies) => {
+                    // console.log(myMovies)
+                    setSavedMovies(myMovies);
+                    setIsLoggedIn(true);
+                })
+                .catch((err) => console.log(`Ошибка: ${err}`))
+                .finally(() => setIsLoading(false))
+        }
+
+    }, [loggedIn])
+
+    const handleSaveMovie = (movie) => {
+        mainApi
+            .addSaveMovie(movie)
+            .then((myMovie) => {
+                // let allSaveMovies = savedMovies.push(myMovie)
+                // console.log(allSaveMovies)
+                setSavedMovies([...savedMovies, myMovie])
+                // setSavedMovies(savedMovies.push(myMovie))
+                //console.log(savedMovies)
+                // localStorage.setItem("savedMovies", JSON.stringify([...savedMovies, myMovie]));
+            })
+            .catch((err) => console.log(`Ошибка: ${err}`))
+    }
+
+    const handleDeleteMovie = (movieId) => {
+        mainApi
+            .deleteMovie(movieId)
+            .then(({ _id: deleteMovieId }) => {
+                const newSavedMovies = savedMovies.filter(
+                    ({ _id }) => _id !== deleteMovieId
+                );
+                setSavedMovies(newSavedMovies);
+                // localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
+            })
+            .catch((err) => console.log(`Ошибка: ${err}`))
+    };
+
     return (
         <CurrentUserContext.Provider value={currentUser}>
             <div className="body">
@@ -122,10 +166,16 @@ function App() {
                             filterMoviesByName={filterMoviesByName}
                             filterShortMovies={filterShortMovies}
                             element={Movies}
+                            savedMovies={savedMovies}
+                            onSaveMovies={handleSaveMovie}
+                            onDeleteMovie={handleDeleteMovie}
                         />} />
                         <Route path="/saved-movies" element={<ProtectedRoute
                             loggedIn={loggedIn}
+                            filterMoviesByName={filterMoviesByName}
                             element={SavedMovies}
+                            savedMovies={savedMovies}
+                            onDeleteMovie={handleDeleteMovie}
                         />} />
                         <Route path="/profile" element={<ProtectedRoute
                             onSubmit={handleUpdateUser}
