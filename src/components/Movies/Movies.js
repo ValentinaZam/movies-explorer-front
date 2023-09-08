@@ -42,13 +42,12 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
       moviesApi
         .getInitialMovies()
         .then((movies) => {
-          console.log(movies)
           localStorage.setItem("allMovies", JSON.stringify(movies));
           handleFilterMovies(movies, req);
           setIsLoading(false);
         })
-        .catch((error) => {
-          console.log(`Ошибка: ${error}`);
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
           setIsLoading(false);
           setSearchText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
         });

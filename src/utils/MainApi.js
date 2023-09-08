@@ -77,26 +77,6 @@ class MainApi {
             }
         }).then((res) => this._checkResponse(res))
     }
-
-    // deleteLike(movieId) {
-    //     return fetch(this._url + "/movies/" + movieId + "/likes", {
-    //         method: "DELETE",
-    //         headers: {
-    //             authorization: `Bearer ${localStorage.getItem("token")}`,
-    //             "Content-type": "application/json"
-    //         }
-    //     }).then((res) => this._checkResponse(res))
-    // }
-
-    // addLike(movieId) {
-    //     return fetch(this._url + "/movies/" + movieId + "/likes", {
-    //         method: "PUT",
-    //         headers: {
-    //             authorization: `Bearer ${localStorage.getItem("token")}`,
-    //             "Content-type": "application/json"
-    //         }
-    //     }).then((res) => this._checkResponse(res))
-    // }
 }
 
 export const mainApi = new MainApi({

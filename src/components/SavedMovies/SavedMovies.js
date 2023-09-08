@@ -5,7 +5,6 @@ import Footer from "../Footer/Footer"
 import Header from "../Header/Header"
 
 function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, onDeleteMovie }) {
-  // savedMovies = JSON.parse(localStorage.getItem("savedMovies")) ?? [];
   const [searchText, setSearchText] = useState("");
   const [filterMovies, setFilterMovies] = useState([]);
   const [isShortMovie, setIsShortMovie] = useState();

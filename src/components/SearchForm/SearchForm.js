@@ -5,7 +5,6 @@ import find from "../../images/find.svg"
 
 function SearchForm({ onSubmit, isShortMovie, onChange }) {
   const [values, setValues] = useState({});
-  // console.log(values)
   const handleChange = (evt) => {
     const { value, name } = evt.target;
     setValues({ ...values, [name]: value });

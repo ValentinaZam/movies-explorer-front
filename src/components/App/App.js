@@ -118,7 +118,6 @@ function App() {
         if (loggedIn) {
             mainApi.getInitialSavedMovies()
                 .then((myMovies) => {
-                    // console.log(myMovies)
                     setSavedMovies(myMovies);
                     setIsLoggedIn(true);
                 })
@@ -132,12 +131,7 @@ function App() {
         mainApi
             .addSaveMovie(movie)
             .then((myMovie) => {
-                // let allSaveMovies = savedMovies.push(myMovie)
-                // console.log(allSaveMovies)
                 setSavedMovies([...savedMovies, myMovie])
-                // setSavedMovies(savedMovies.push(myMovie))
-                //console.log(savedMovies)
-                // localStorage.setItem("savedMovies", JSON.stringify([...savedMovies, myMovie]));
             })
             .catch((err) => console.log(`Ошибка: ${err}`))
     }
@@ -150,7 +144,6 @@ function App() {
                     ({ _id }) => _id !== deleteMovieId
                 );
                 setSavedMovies(newSavedMovies);
-                // localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
             })
             .catch((err) => console.log(`Ошибка: ${err}`))
     };
