@@ -29,15 +29,13 @@ function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMov
 
   useEffect(() => {
     if (savedMovies) {
-      const moviesVisible = filterMoviesByName(
-        savedMovies,
-        text
-        // isShortMovie
-      );
+      const moviesVisible = filterMoviesByName(savedMovies, text);
       if (moviesVisible.length === 0) {
         setSearchText("что тут написать?");
       }
+      console.log(moviesVisible)
       setFilterMovies(
+
         isShortMovie ? filterShortMovies(moviesVisible) : moviesVisible
       );
       return;

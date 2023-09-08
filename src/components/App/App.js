@@ -169,6 +169,7 @@ function App() {
                             element={SavedMovies}
                             savedMovies={savedMovies}
                             onDeleteMovie={handleDeleteMovie}
+                            filterShortMovies={filterShortMovies}
                         />} />
                         <Route path="/profile" element={<ProtectedRoute
                             onSubmit={handleUpdateUser}
