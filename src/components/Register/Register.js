@@ -3,7 +3,7 @@ import "../Form/Form.css"
 import Form from "../Form/Form"
 import { validator } from "../Validator/validator"
 
-function Register({ onSubmit, errorGlobal }) {
+function Register({ onSubmit, errorGlobal, resetErrorGlobal }) {
 
   const [formValue, setFormValue] = useState({
     email: "",
@@ -70,6 +70,7 @@ function Register({ onSubmit, errorGlobal }) {
     const isValid = validate();
     if (!isValid) return;
     onSubmit(formValue)
+    errorGlobal = "";
   }
 
   useEffect(() => {
@@ -88,6 +89,7 @@ function Register({ onSubmit, errorGlobal }) {
           link="/signin"
           onSubmit={handleSubmit}
           isValid={isValidate}
+          resetErrorGlobal={resetErrorGlobal}
         >
           <label className="form__label">
             Имя

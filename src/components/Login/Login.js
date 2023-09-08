@@ -3,7 +3,8 @@ import "../Form/Form.css"
 import Form from "../Form/Form"
 import { validator } from "../Validator/validator"
 
-function Login({ onSubmit, errorGlobal }) {
+function Login({ onSubmit, errorGlobal, resetErrorGlobal }) {
+
   const [formValue, setFormValue] = useState({
     email: "",
     password: ""
@@ -46,8 +47,7 @@ function Login({ onSubmit, errorGlobal }) {
 
   useEffect(() => {
     validate();
-  }, [formValue]);
-
+  }, [formValue, errorGlobal]);
 
   const handleChangeLogged = (e) => {
     const { name, value } = e.target
@@ -62,6 +62,7 @@ function Login({ onSubmit, errorGlobal }) {
     const isValid = validate();
     if (!isValid) return;
     onSubmit(formValue)
+    resetErrorGlobal()
   }
 
   return (
@@ -75,6 +76,7 @@ function Login({ onSubmit, errorGlobal }) {
           link="/signup"
           onSubmit={handleSubmit}
           isValid={isValidate}
+          resetErrorGlobal={resetErrorGlobal}
         >
           <label className="form__label">
             E-mail
@@ -108,7 +110,7 @@ function Login({ onSubmit, errorGlobal }) {
             <span className="form__input-error form__input-error_general">
               {errorGlobal}</span>
           </label>
-        </Form>
+        </Form >
       </section>
     </main>
   )

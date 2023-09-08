@@ -11,8 +11,13 @@ function Form({
   buttonText,
   question,
   onSubmit,
-  isValid
+  isValid,
+  resetErrorGlobal
 }) {
+
+  function handleLoginClick() {
+    resetErrorGlobal();
+  }
 
   return (
     <div className="form">
@@ -32,7 +37,7 @@ function Form({
       </form>
       <p className="form__text">
         {question}
-        <Link to={link} className="form__link">
+        <Link to={link} className="form__link" onClick={handleLoginClick} >
           {linkText}
         </Link>
       </p>
@@ -40,4 +45,4 @@ function Form({
   )
 }
 
-export default Form
+export default Form;

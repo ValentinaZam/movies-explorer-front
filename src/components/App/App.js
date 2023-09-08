@@ -22,6 +22,11 @@ function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    function resetErrorGlobal() {
+        setErrorGlobal("");
+    }
+
+
     useEffect(() => {
         if (loggedIn) {
             mainApi
@@ -35,7 +40,6 @@ function App() {
         mainApi
             .setUserInfo(data)
             .then((userInfo) => {
-
                 setCurrentUser(userInfo)
             })
             .catch((err) => console.log(`Ошибка ${err}`))
@@ -64,8 +68,8 @@ function App() {
             })
     }
 
-
     useEffect(() => {
+
         const tokenUser = localStorage.getItem("token")
         if (tokenUser) {
             auth
@@ -92,7 +96,6 @@ function App() {
                 filteredMovies.push(movie);
             }
         }
-
         return filteredMovies;
     };
 
@@ -112,7 +115,6 @@ function App() {
             return filteredMovies;
         }, []);
     };
-
 
     useEffect(() => {
         if (loggedIn) {
@@ -177,8 +179,8 @@ function App() {
                             signOut={signOut}
                             element={Profile}
                         />} />
-                        <Route path="/signup" element={<Register onSubmit={handleRegistrationSubmit} errorGlobal={errorGlobal} />} />
-                        <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} errorGlobal={errorGlobal} />} />
+                        <Route path="/signup" element={<Register onSubmit={handleRegistrationSubmit} errorGlobal={errorGlobal} resetErrorGlobal={resetErrorGlobal} />} />
+                        <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} errorGlobal={errorGlobal} resetErrorGlobal={resetErrorGlobal} />} />
                         <Route path="*" element={<NotFound />} />
                     </Routes>
                 </div>

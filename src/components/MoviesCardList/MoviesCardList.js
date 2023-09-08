@@ -70,16 +70,6 @@ function MoviesCardList({ movies, searchText, onClick, savedMovies }) {
     return true;
   };
 
-  // const searchTextPage = () => {
-  //   if (!searchText && isMoviesSavedPage) {
-  //     return "Нет сохранённых фильмов"
-  //   } else if (!searchText && !isMoviesSavedPage) {
-  //     return "Нужно ввести ключевое слово"
-  //   }else{
-  //     return searchText
-  //   }
-  // }
-
   return (
     <section className="cards">
       {movies.length === 0 ? (<p className="cards__message">{searchText ? searchText : "Нужно ввести ключевое слово"}</p>) : (
