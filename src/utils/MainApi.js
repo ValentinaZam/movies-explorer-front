@@ -80,6 +80,6 @@ class MainApi {
 }
 
 export const mainApi = new MainApi({
-    url: "https://api.project-mesto-deploy.nomoredomains.xyz",
+    url: "https://api.cine-selecta.nomoreparties.co",
     // url: "http://localhost:3000"
 })
