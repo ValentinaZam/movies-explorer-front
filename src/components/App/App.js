@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import { Routes, Route, useNavigate } from "react-router-dom"
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom"
 import Main from "../Main/Main"
 import NotFound from "../NotFound/NotFound"
 import Movies from "../Movies/Movies"
@@ -19,11 +19,11 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false)
     const [errorGlobal, setErrorGlobal] = useState("");
     const [savedMovies, setSavedMovies] = useState([]);
+    const location = useLocation();
 
     function resetErrorGlobal() {
         setErrorGlobal("");
     }
-
 
     useEffect(() => {
         if (loggedIn) {
@@ -39,6 +39,7 @@ function App() {
             .setUserInfo(data)
             .then((userInfo) => {
                 setCurrentUser(userInfo)
+
             })
             .catch((err) => console.log(`Ошибка ${err}`))
     }
@@ -73,8 +74,8 @@ function App() {
             auth
                 .checkToken(tokenUser)
                 .then(() => {
-                    // navigate("/movies", { replace: true })
                     setLoggedIn(true)
+                    navigate(location.pathname, { replace: true });
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
         }

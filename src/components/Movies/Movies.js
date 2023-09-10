@@ -94,7 +94,6 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
       {isLoading && <Preloader />}
       <MoviesCardList movies={filterMovies}
         searchText={searchText} savedMovies={savedMovies} onClick={handleClickMovie} />
-
     </main>
     <Footer />
   </div>
