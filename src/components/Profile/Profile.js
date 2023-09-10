@@ -32,6 +32,14 @@ function Profile({ signOut, loggedIn, onSubmit }) {
     }
   };
 
+  const validate = () => {
+    if (name && email) {
+      const errors = validator({ name: name, email: email }, validatorConfig)
+      setErrors(errors);
+      return Object.keys(errors).length === 0;
+    }
+
+  };
 
   const handleEditClick = (e) => {
     e.preventDefault();
@@ -39,7 +47,6 @@ function Profile({ signOut, loggedIn, onSubmit }) {
     const isValid = validate();
     if (!isValid) return;
     onSubmit({ name: name, email: email });
-    // setIsProfileChanged(false);
   };
 
   useEffect(() => {
@@ -70,11 +77,7 @@ function Profile({ signOut, loggedIn, onSubmit }) {
     }
   };
 
-  const validate = () => {
-    const errors = validator({ name: name, email: email }, validatorConfig)
-    setErrors(errors);
-    return Object.keys(errors).length === 0;
-  };
+
 
   useEffect(() => {
     validate();
@@ -101,7 +104,7 @@ function Profile({ signOut, loggedIn, onSubmit }) {
                 placeholder="Имя"
                 autoComplete="off"
                 onChange={handleInputChange}
-                value={name}
+                value={name ? name : ""}
 
               />
               <span className="profile__input-error">{errors.name}</span>
@@ -120,7 +123,7 @@ function Profile({ signOut, loggedIn, onSubmit }) {
                 minLength="4"
                 maxLength="40"
                 autoComplete="off"
-                value={email}
+                value={email ? email : ""}
                 onChange={handleInputChange}
                 error={errors.email}
               />
