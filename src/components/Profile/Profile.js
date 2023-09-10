@@ -10,9 +10,27 @@ function Profile({ signOut, loggedIn, onSubmit }) {
   const [name, setName] = useState(currentUser.name);
   const [email, setEmail] = useState(currentUser.email);
   const [errors, setErrors] = useState({});
+  const [isProfileChanged, setIsProfileChanged] = useState(false);
   const isValidate = Object.keys(errors).length === 0;
 
-
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    if (name === "name" && value !== currentUser.name) {
+      setIsProfileChanged(true);
+    } else if (name === "email" && value !== currentUser.email) {
+      setIsProfileChanged(true);
+    } else if (name === "name" && value === currentUser.name) {
+      setIsProfileChanged(false); // Пользователь вернулся к первоначальному имени
+    } else if (name === "email" && value === currentUser.email) {
+      setIsProfileChanged(false); // Пользователь вернулся к первоначальной почте
+    }
+    if (name === "name") {
+      setName(value);
+    }
+    if (name === "email") {
+      setEmail(value);
+    }
+  };
 
 
   const handleEditClick = (e) => {
@@ -20,7 +38,8 @@ function Profile({ signOut, loggedIn, onSubmit }) {
 
     const isValid = validate();
     if (!isValid) return;
-    onSubmit({ name: name, email: email })
+    onSubmit({ name: name, email: email });
+    // setIsProfileChanged(false);
   };
 
   useEffect(() => {
@@ -81,7 +100,7 @@ function Profile({ signOut, loggedIn, onSubmit }) {
                 required
                 placeholder="Имя"
                 autoComplete="off"
-                onChange={(e) => setName(e.target.value)}
+                onChange={handleInputChange}
                 value={name}
 
               />
@@ -102,12 +121,12 @@ function Profile({ signOut, loggedIn, onSubmit }) {
                 maxLength="40"
                 autoComplete="off"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={handleInputChange}
                 error={errors.email}
               />
               <span className="profile__input-error">{errors.email}</span>
             </label>
-            <button type="button" className={isValidate ? "profile__button-save" : "profile__button-save_active"} onClick={handleEditClick}>
+            <button type="button" className={isValidate && isProfileChanged ? "profile__button-save" : "profile__button-save_active"} onClick={handleEditClick}>
               Редактировать
             </button>
             <Link className="profile__exit" to="/" onClick={signOut}>

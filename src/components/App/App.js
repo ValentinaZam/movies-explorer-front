@@ -48,6 +48,7 @@ function App() {
             .authorize(userInfo)
             .then(() => {
                 setLoggedIn(true)
+                navigate("/movies", { replace: true })
             })
             .catch((err) => {
                 setErrorGlobal(err.message)
@@ -67,13 +68,12 @@ function App() {
     }
 
     useEffect(() => {
-
         const tokenUser = localStorage.getItem("token")
         if (tokenUser) {
             auth
                 .checkToken(tokenUser)
                 .then(() => {
-                    navigate("/movies", { replace: true })
+                    // navigate("/movies", { replace: true })
                     setLoggedIn(true)
                 })
                 .catch((err) => console.log(`Ошибка: ${err}`))
