@@ -35,7 +35,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
   };
 
 
-  const findMovie = (req) => {
+  const findMovie = (req, isShortCheck) => {
     setIsLoading(true);
     setSearchText("");
     if (!allMovies.length) {
@@ -43,7 +43,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
         .getInitialMovies()
         .then((movies) => {
           localStorage.setItem("allMovies", JSON.stringify(movies));
-          handleFilterMovies(movies, req);
+          handleFilterMovies(movies, req, isShortCheck);
           setIsLoading(false);
         })
         .catch((err) => {
@@ -52,10 +52,11 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
           setSearchText("Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз")
         });
     } else {
-      handleFilterMovies(allMovies, req);
+      handleFilterMovies(allMovies, req, isShortCheck);
       setIsLoading(false);
     }
     localStorage.setItem("request", req);
+    localStorage.setItem("isShortMovie", isShortCheck);
   };
 
   useEffect(() => {
@@ -63,6 +64,7 @@ function Movies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, 
     const defaultMovies = JSON.parse(localStorage.getItem("filteredMovies"));
     if (defaultMovies) {
       if (defaultMovies.length !== 0) {
+        setIsShortMovie(JSON.parse(localStorage.getItem("isShortMovie")));
         setFilterMovies(
           isShortMovie ? filterShortMovies(defaultMovies) : defaultMovies
         );

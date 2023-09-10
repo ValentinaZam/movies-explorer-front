@@ -13,7 +13,7 @@ function SearchForm({ onSubmit, isShortMovie, onChange }) {
   };
   const handleSearch = (evt) => {
     evt.preventDefault();
-    onSubmit(values.query);
+    onSubmit(values.query, isShortMovie);
   };
   const location = useLocation()
   const isSavedMoviesPage = location.pathname === "/saved-movies";
