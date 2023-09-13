@@ -6,11 +6,12 @@ import AboutMe from "../AboutMe/AboutMe";
 import Portfolio from "../Portfolio/Portfolio";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import "./Main.css";
 
-function Main() {
-    const isAuthUser = false
+function Main({ loggedIn }) {
+
     return (<div className="main">
-        {<Header isAuth={isAuthUser} />}
+        {<Header isAuth={loggedIn} />}
         <main>
             <Promo />
             <AboutProject />

@@ -49,6 +49,20 @@
   cursor: pointer;
 }
 
+.form__button-save_active{
+  height: 45px;
+  border: none;
+  background: #545961;
+  border-radius: 3px;
+  color: white;
+  border-radius: 3px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  cursor: pointer;
+}
+
 .form__button-save:hover {
   opacity: 0.8;
 }
@@ -88,6 +102,11 @@
   color: #a0a0a0;
 }
 
+.form__labels{
+  display: flex;
+  flex-direction: column;
+}
+
 .form__label {
   
   margin: 0;
@@ -101,7 +120,7 @@
   box-sizing: border-box;
   padding: 0 15px;
   width: 100%;
-  margin: 10px 0;
+  margin-top: 10px;
   height: 46px;
   color: #fff;
   font-weight: 400;
@@ -118,6 +137,8 @@
 }
 
 .form__input-error {
+  display: block; 
+  min-height: 10px;
   font-size: 10px;
 font-style: normal;
 font-weight: 400;

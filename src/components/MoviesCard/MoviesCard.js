@@ -1,35 +1,40 @@
-import React, { useState } from "react";
-import imageFilm from "../../images/image-movies.jpg"
+import React from "react";
 import "./MoviesCard.css";
 import { useLocation } from "react-router-dom";
 
-// Временная карточка
-
-function MoviesCard() {
+function MoviesCard({ movie, onClick, isLike }) {
   const location = useLocation();
-  // Временная функция по установке лайка
-  const [liked, setLiked] = useState(false);
-  const nameImage = "33 слова о дизайне"
-
-  const toggleLike = () => {
-    setLiked(!liked);
+  const isMoviesSavedPage = location.pathname === "/saved-movies";
+  const handleClick = () => {
+    onClick(movie)
   };
 
+  function convertTime(number) {
+    return `${Math.floor(number / 60)}ч ${number % 60}м`;
+  }
+
+  const movieImage = isMoviesSavedPage
+    ? movie.image
+    : `https://api.nomoreparties.co/${movie.image.url}`;
+
   const buttonImages = () => {
-    if (location.pathname === "/movies") return (liked ? "card__like-button--active" : "card__like-button");
+    if (location.pathname === "/movies") return (isLike ? "card__like-button--active" : "card__like-button");
     if (location.pathname === "/saved-movies") return "card__delete-button";
   }
 
   return (
     <>
       <li className="card">
-        <img src={imageFilm} alt={nameImage} className="card__image" />
+        <a href={movie.trailerLink} target="_blank"
+          rel="noreferrer">
+          <img src={movieImage} alt={movie.nameRU} className="card__image" />
+        </a>
         <div className="card__container">
           <div className="card__title-block">
-            <h2 className="card__title">{nameImage}</h2>
-            <span className="card__time">120</span>
+            <h2 className="card__title">{movie.nameRU}</h2>
+            <span className="card__time">{convertTime(movie.duration)}</span>
           </div>
-          <button type="button" className={buttonImages()} onClick={toggleLike}></button>
+          <button type="button" className={buttonImages()} onClick={handleClick}></button>
         </div>
       </li>
     </>

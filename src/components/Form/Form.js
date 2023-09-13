@@ -10,25 +10,34 @@ function Form({
   title,
   buttonText,
   question,
+  onSubmit,
+  isValid,
+  resetErrorGlobal
 }) {
+
+  function handleLoginClick() {
+    resetErrorGlobal();
+  }
+
   return (
     <div className="form">
       <Link to="/" className="form__logo">
         <img src={logo} alt="логотип cайта" />
       </Link>
       <h1 className="form__title">{title}</h1>
-      <form className="form__container" noValidate>
-        <div>{children}</div>
+      <form className="form__container" noValidate onSubmit={onSubmit}>
+        <div className="form__labels">{children}</div>
         <button
           type="submit"
-          className="form__button-save"
+          className={isValid ? "form__button-save" : "form__button-save_active"}
+          disabled={!isValid}
         >
           {buttonText}
         </button>
       </form>
       <p className="form__text">
         {question}
-        <Link to={link} className="form__link">
+        <Link to={link} className="form__link" onClick={handleLoginClick} >
           {linkText}
         </Link>
       </p>
@@ -36,4 +45,4 @@ function Form({
   )
 }
 
-export default Form
+export default Form;
