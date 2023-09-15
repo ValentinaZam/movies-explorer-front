@@ -7,8 +7,9 @@ import Header from "../Header/Header"
 function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMovies, onDeleteMovie }) {
   const [searchText, setSearchText] = useState("");
   const [filterMovies, setFilterMovies] = useState([]);
-  const [isShortMovie, setIsShortMovie] = useState();
+  const [isShortMovie, setIsShortMovie] = useState(false);
   const [text, setText] = useState("");
+
   const handleCheckbox = () => {
     if (savedMovies) {
       setIsShortMovie(!isShortMovie);
@@ -46,7 +47,7 @@ function SavedMovies({ loggedIn, filterShortMovies, filterMoviesByName, savedMov
     <div className="movies">
       <Header isAuth={loggedIn} />
       <main>
-        <SearchForm onChange={handleCheckbox} onSubmit={handleSearchMovies} />
+        <SearchForm onChange={handleCheckbox} onSubmit={handleSearchMovies} isShortMovie={isShortMovie} />
         <MoviesCardList movies={filterMovies}
           searchText={searchText} onClick={handleDelete} />
       </main>

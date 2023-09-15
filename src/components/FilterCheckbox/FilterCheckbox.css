@@ -9,6 +9,9 @@
   line-height: 18px;
   color: #ffffff;
   margin: 0 14px;
+  text-decoration: none;
+  background: #202020 ;
+  border: #202020;
 }
 
 .filter__checkbox {
@@ -27,13 +30,21 @@
   opacity: .7;
 }
 
-.filter__checkbox::after {
+/* .filter__checkbox::after {
   position: absolute;
   height: 16px;
   width: 16px;
-}
+} */
 
-.filter__checkbox:checked {
+.filter__checkbox_active {
+  width: 36px;
+  height: 20px;
+  border: none;
+  outline: none;
+  border-radius: 16px;
+  position: relative;
+  cursor: pointer;
+  appearance: none;
   background-image: url("../../images/button-filter-active.svg");
 }
 

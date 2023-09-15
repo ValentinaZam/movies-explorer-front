@@ -15,6 +15,7 @@ function SearchForm({ onSubmit, isShortMovie, onChange }) {
   const handleSearch = (evt) => {
     evt.preventDefault();
     onSubmit(values.query, isShortMovie);
+
   };
 
   const location = useLocation()
@@ -23,13 +24,15 @@ function SearchForm({ onSubmit, isShortMovie, onChange }) {
   useEffect(() => {
     if (!isSavedMoviesPage) {
       const savedSearch = localStorage.getItem("request");
+      console.log(savedSearch)
       if (savedSearch) {
         setValues({ query: savedSearch });
       }
     } else {
+
       setValues("");
     }
-  }, [isSavedMoviesPage, , setValues]);
+  }, [isSavedMoviesPage, setValues, isShortMovie, onChange]);
 
 
   return (
